@@ -10,14 +10,14 @@ async function createLead(data) {
     `${BASE_URL}/${BASE_ID}/${encodeURIComponent(TABLE)}`,
     {
       fields: {
-        'Name': data.name || '',
-        'Phone': data.phone || '',
-        'Email': data.email || '',
-        'Address': data.address || '',
-        'Monthly Bill': Number(data.monthlyBill) || 0,
-        'WhatsApp Opt In': !!data.whatsappOptIn,
-        'Status': 'New',
-        'Estimate Data': data.estimateData || ''   // sve ostalo (paneli, ušteda, sunce, krov...) u JSON-u
+        'Ime': data.name || '',
+        'Telefon': data.phone || '',
+        'E-mail': data.email || '',
+        'Adresa': data.address || '',
+        'Mjesečni račun': Number(data.monthlyBill) || 0,
+        'WhatsApp privola': !!data.whatsappOptIn,
+        'Status': 'Novo',
+        'Podaci procjene': data.estimateData || ''   // sve ostalo (paneli, ušteda, sunce, krov...) u JSON-u
       },
       typecast: true  // Airtable sam stvori npr. "New" opciju u Status polju
     },
@@ -40,7 +40,7 @@ async function findLeadByPhone(phone) {
     { headers: { Authorization: `Bearer ${TOKEN}` } }
   );
   return res.data.records.find(
-    r => String(r.fields.Phone || '').replace(/\D/g, '').endsWith(key)
+    r => String(r.fields.Telefon || '').replace(/\D/g, '').endsWith(key)
   ) || null;
 }
 

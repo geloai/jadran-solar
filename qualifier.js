@@ -17,10 +17,10 @@ function buildKnown(lead) {
   if (!lead || !lead.fields) return '';
   const f = lead.fields;
   const parts = [];
-  if (f.Address) parts.push('- Adresa: ' + f.Address);
-  if (f['Monthly Bill']) parts.push('- Mjesečni račun za struju: ' + f['Monthly Bill'] + ' €');
+  if (f.Adresa) parts.push('- Adresa: ' + f.Adresa);
+  if (f['Mjesečni račun']) parts.push('- Mjesečni račun za struju: ' + f['Mjesečni račun'] + ' €');
   try {
-    const est = JSON.parse(f['Estimate Data'] || '{}');
+    const est = JSON.parse(f['Podaci procjene'] || '{}');
     if (est.recommendedPanels) {
       let p = '- Naša procjena: ' + est.recommendedPanels + ' panela';
       if (est.systemSizeKw) p += ' (' + est.systemSizeKw + ' kW)';
@@ -79,7 +79,7 @@ async function handleMessage(phone, text) {
     s = sessions[phone] = {
       history: [],
       recordId: lead ? lead.id : null,
-      name: lead && lead.fields ? (lead.fields.Name || '') : '',
+      name: lead && lead.fields ? (lead.fields.Ime || '') : '',
       known: buildKnown(lead)
     };
   }
@@ -107,14 +107,14 @@ async function handleMessage(phone, text) {
       const action = JSON.parse(jsonMatch[0]);
       const fields = {};
       if (action.qualify === false) {
-        fields.Status = 'Disqualified';
+        fields.Status = 'Diskvalificiran';
       } else if (action.appointment) {
-        fields.Status = 'Booked';
-        fields.Appointment = action.appointment;
+        fields.Status = 'Zakazano';
+        fields.Termin = action.appointment;
       } else {
-        fields.Status = 'Qualified';
+        fields.Status = 'Kvalificiran';
       }
-      if (action.notes) fields.Notes = action.notes;
+      if (action.notes) fields['Bilješke'] = action.notes;
       if (s.recordId) {
         await updateLead(s.recordId, fields).catch(e => console.error('Airtable update:', e.message));
       }
