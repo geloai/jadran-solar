@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jadran Solar — Besplatna procjena uštede</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f2e4d;
+      --navy-2: #1e3a5f;
+      --blue: #2563eb;
+      --gold: #f59e0b;
+      --gold-2: #f97316;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --faint: #94a3b8;
+      --line: #e7edf5;
+      --bg: #eaf1fb;
+      --wa: #25d366;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, #dbe8ff 0%, rgba(219,232,255,0) 60%),
+        var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      color: var(--ink);
+    }
+    .wrapper { width: 100%; max-width: 600px; }
+
+    /* Brand */
+    .brand {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      margin-bottom: 22px;
+    }
+    .brand .mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; box-shadow: 0 4px 12px rgba(245,158,11,0.35);
+    }
+    .brand .name {
+      font-weight: 800; font-size: 16px; letter-spacing: 0.02em; color: var(--navy);
+    }
+    .brand .name span { color: var(--gold-2); }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 40px 38px;
+      box-shadow: 0 18px 50px -20px rgba(15,46,77,0.28), 0 2px 8px rgba(15,46,77,0.05);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .headline { text-align: center; margin-bottom: 26px; }
+    .headline h1 {
+      font-size: 25px; font-weight: 800; color: var(--navy);
+      line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .headline p { color: var(--muted); font-size: 14.5px; }
+
+    /* Form */
+    .form-group { margin-bottom: 16px; }
+    label {
+      display: block; font-size: 11.5px; font-weight: 700; color: #475569;
+      margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    input[type=text], input[type=tel], input[type=email], input[type=number] {
+      width: 100%; padding: 13px 15px;
+      border: 1.5px solid var(--line); border-radius: 11px;
+      font-size: 15px; font-family: inherit; color: var(--ink);
+      transition: border-color 0.15s, box-shadow 0.15s; outline: none;
+      background: #fbfcfe;
+    }
+    input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); background: #fff; }
+    input::placeholder { color: var(--faint); }
+
+    .btn-primary {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: white; font-size: 15.5px; font-weight: 700; font-family: inherit;
+      border: none; border-radius: 12px; cursor: pointer;
+      box-shadow: 0 8px 20px -6px rgba(245,158,11,0.55);
+      transition: transform 0.12s, box-shadow 0.15s; margin-top: 6px;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -6px rgba(245,158,11,0.6); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .privacy { text-align: center; font-size: 12px; color: var(--faint); margin-top: 12px; }
+
+    .error-msg {
+      display: none; background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 10px; padding: 11px 15px; color: #dc2626;
+      font-size: 13.5px; margin-top: 13px; text-align: center;
+    }
+
+    /* Loading */
+    .loading { display: none; text-align: center; padding: 50px 0; }
+    .spinner {
+      width: 50px; height: 50px; border: 4px solid var(--line);
+      border-top-color: var(--gold); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto 18px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading p { color: var(--muted); font-size: 15px; font-weight: 500; }
+    .loading small { color: var(--faint); font-size: 12.5px; margin-top: 5px; display: block; }
+
+    /* Results */
+    .results { display: none; }
+    .results-top { text-align: center; margin-bottom: 20px; }
+    .results-top .addr {
+      font-size: 12.5px; color: var(--muted); font-weight: 500;
+      background: #f1f5fb; padding: 7px 14px; border-radius: 30px; display: inline-block;
+    }
+
+    .savings-hero {
+      background: linear-gradient(150deg, var(--navy) 0%, var(--blue) 100%);
+      border-radius: 18px; padding: 26px 22px; text-align: center;
+      margin-bottom: 14px; color: white; position: relative; overflow: hidden;
+      box-shadow: 0 14px 34px -14px rgba(30,58,95,0.6);
+    }
+    .savings-hero::after {
+      content: "☀"; position: absolute; right: -14px; top: -18px;
+      font-size: 90px; opacity: 0.10;
+    }
+    .savings-hero .label {
+      font-size: 12px; opacity: 0.82; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+    }
+    .savings-hero .amount { font-size: 54px; font-weight: 900; line-height: 1.05; margin: 4px 0; letter-spacing: -0.02em; }
+    .savings-hero .sublabel { font-size: 13.5px; opacity: 0.85; }
+    .savings-hero .annual {
+      font-size: 14px; font-weight: 600; margin-top: 12px;
+      display: inline-block; background: rgba(255,255,255,0.14);
+      padding: 5px 14px; border-radius: 30px;
+    }
+
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+    .stat-box {
+      background: #f7faff; border: 1px solid var(--line);
+      border-radius: 13px; padding: 15px; text-align: center;
+    }
+    .stat-box .val { font-size: 23px; font-weight: 800; color: var(--navy); }
+    .stat-box .lbl { font-size: 11.5px; color: var(--muted); margin-top: 3px; font-weight: 500; }
+    .loc-info { text-align: center; font-size: 12.5px; color: var(--muted); margin: 14px 0 4px; }
+    .loc-info strong { color: var(--navy); font-weight: 700; }
+
+    /* Map */
+    .section-label {
+      font-size: 11.5px; font-weight: 700; color: var(--navy);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;
+    }
+    .map-section { margin-bottom: 24px; }
+    #map { width: 100%; height: 250px; border-radius: 14px; background: #e2e8f0; overflow: hidden; }
+    .roof-nudge {
+      font-size: 13px; color: #1e40af; line-height: 1.5;
+      background: #eff6ff; border: 1px solid #bfdbfe;
+      border-radius: 12px; padding: 12px 15px; margin-top: 12px; margin-bottom: 16px;
+    }
+    .roof-nudge strong { color: #1d4ed8; }
+    .map-disabled {
+      display: none; font-size: 13px; color: var(--faint); text-align: center;
+      padding: 20px; background: #f7faff; border-radius: 13px;
+    }
+    .skip-btn {
+      display: block; width: 100%; margin-top: 14px; padding: 8px;
+      background: none; border: none; color: var(--faint); font-size: 12.5px;
+      font-family: inherit; cursor: pointer; text-decoration: underline;
+    }
+    .skip-btn:hover { color: var(--muted); }
+
+    .roof-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 11px; }
+    .roof-btn {
+      padding: 12px 20px; font-size: 14.5px; font-weight: 700; font-family: inherit;
+      border: 1.5px solid var(--blue); background: var(--blue); color: white;
+      border-radius: 11px; cursor: pointer; transition: all 0.15s;
+      box-shadow: 0 6px 14px -6px rgba(37,99,235,0.5);
+    }
+    .roof-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .roof-btn.active { background: white; color: var(--blue); box-shadow: none; }
+    .recalc-btn {
+      padding: 9px 15px; font-size: 13.5px; font-weight: 700; font-family: inherit;
+      border: none; background: var(--gold); color: white; border-radius: 10px; cursor: pointer;
+    }
+    .roof-info {
+      font-size: 12.5px; color: #15803d; font-weight: 600;
+      background: #f0fdf4; padding: 6px 12px; border-radius: 8px;
+    }
+
+    /* Compare */
+    #roof-compare { margin-top: 14px; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .compare-card { border: 1.5px solid var(--line); border-radius: 14px; padding: 15px; background: #f7faff; }
+    .compare-card.highlight { border-color: var(--gold); background: #fffaf0; box-shadow: 0 4px 16px -6px rgba(245,158,11,0.3); }
+    .compare-card .ctag { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 7px; }
+    .compare-card.highlight .ctag { color: #b45309; }
+    .compare-card .cmain { font-size: 23px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+    .compare-card .csub { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+    .compare-card .cval { font-size: 15px; font-weight: 800; color: #15803d; margin-top: 8px; }
+    .compare-card .cnote { font-size: 11.5px; color: #92400e; margin-top: 8px; line-height: 1.45; }
+    .compare-card .cbattery { font-size: 12px; color: #15803d; margin-top: 9px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 7px 9px; line-height: 1.4; }
+    .compare-card .cbattery strong { color: #166534; }
+
+    /* Battery teaser */
+    .battery-teaser {
+      background: linear-gradient(135deg, #0b1f38, var(--navy-2));
+      color: white; border-radius: 14px; padding: 17px 19px; margin-bottom: 22px;
+      display: flex; gap: 13px; align-items: center;
+    }
+    .battery-teaser .ico { font-size: 26px; flex-shrink: 0; }
+    .battery-teaser .txt { font-size: 13.5px; line-height: 1.5; }
+    .battery-teaser .txt strong { color: #fbbf24; }
+
+    /* Contact — focal CTA */
+    .contact {
+      background: linear-gradient(135deg, #fffaf0, #fff7e6);
+      border: 1.5px solid #fde9bf; border-radius: 18px; padding: 28px 24px;
+      box-shadow: 0 10px 30px -16px rgba(245,158,11,0.4);
+    }
+    .contact h3 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 5px; letter-spacing: -0.01em; }
+    .contact .sub { font-size: 13px; color: #92744a; margin-bottom: 16px; line-height: 1.45; }
+    .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-bottom: 11px; }
+
+    .wa-opt {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 11px;
+      padding: 11px 13px; margin: 4px 0 15px; cursor: pointer; user-select: none;
+      text-transform: none; letter-spacing: normal;
+    }
+    .wa-opt input { width: 18px; height: 18px; margin-top: 1px; accent-color: var(--wa); flex-shrink: 0; cursor: pointer; }
+    .wa-opt .wa-txt { font-size: 12.5px; color: #15803d; line-height: 1.4; text-transform: none; letter-spacing: normal; }
+    .wa-opt .wa-txt b { font-weight: 700; }
+
+    .btn-contact {
+      width: 100%; padding: 15px; font-size: 15.5px; font-weight: 700; font-family: inherit;
+      border: none; border-radius: 12px; cursor: pointer; color: white;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      box-shadow: 0 8px 20px -6px rgba(245,158,11,0.55); transition: transform 0.12s;
+    }
+    .btn-contact:hover { transform: translateY(-1px); }
+    .btn-contact:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .contact-sent { display: none; text-align: center; padding: 14px; font-size: 15px; color: #166534; font-weight: 700; }
+
+    /* Poticaji */
+    .incentives {
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 14px;
+      padding: 16px 18px; margin-top: 18px;
+    }
+    .incentives h4 {
+      font-size: 12px; font-weight: 700; color: #166534;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 11px;
+    }
+    .inc-item { display: flex; gap: 9px; font-size: 13.5px; color: #15803d; margin-bottom: 9px; align-items: flex-start; line-height: 1.45; }
+    .inc-item:last-child { margin-bottom: 0; }
+    .inc-item .check { flex-shrink: 0; font-weight: 700; }
+
+    /* Methodology — short, collapsed */
+    .methodology { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+    .methodology summary {
+      font-size: 12.5px; font-weight: 600; color: var(--muted); cursor: pointer;
+      list-style: none; display: flex; align-items: center; gap: 6px;
+    }
+    .methodology summary::after { content: "▾"; margin-left: auto; transition: transform 0.2s; }
+    .methodology[open] summary::after { transform: rotate(180deg); }
+    .methodology summary::-webkit-details-marker { display: none; }
+    .method-body { margin-top: 11px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .method-body .tags { margin-top: 9px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .method-body .tag {
+      font-size: 11px; background: #eef2ff; color: #4338ca;
+      padding: 3px 9px; border-radius: 20px; font-weight: 600;
+    }
+
+    .restart-btn {
+      width: 100%; margin-top: 14px; padding: 11px; background: none;
+      border: 1.5px solid var(--line); border-radius: 11px; font-size: 13.5px;
+      font-family: inherit; color: var(--muted); cursor: pointer; transition: border-color 0.15s;
+    }
+    .restart-btn:hover { border-color: var(--faint); color: #374151; }
+
+    .foot { text-align: center; margin-top: 18px; font-size: 11.5px; color: var(--faint); }
+
+    @media (max-width: 480px) {
+      body { padding: 24px 14px; }
+      .card { padding: 26px 20px; }
+      .contact-row { grid-template-columns: 1fr; }
+      .savings-hero .amount { font-size: 46px; }
+      #map { height: 220px; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="brand">
+    <div class="mark">☀️</div>
+    <div class="name">JADRAN <span>SOLAR</span></div>
+  </div>
+
+  <div class="card">
+
+    <!-- FORMA -->
+    <div id="form-section">
+      <div class="headline">
+        <h1>Koliko možete uštedjeti na struji?</h1>
+        <p>Besplatna procjena za vaš krov u 10 sekundi.</p>
+      </div>
+
+      <div class="form-group">
+        <label>Adresa nekretnine</label>
+        <input type="text" id="address" placeholder="Npr. Ilica 10, 10000 Zagreb" />
+      </div>
+      <div class="form-group">
+        <label>Mjesečni račun za struju (€)</label>
+        <input type="number" id="bill" placeholder="Npr. 80" min="10" max="2000" />
+      </div>
+
+      <button class="btn-primary" onclick="submitForm()">Izračunaj moju uštedu →</button>
+      <div class="error-msg" id="error-msg"></div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Analiziramo vaš krov...</p>
+      <small>Dohvaćamo satelitske podatke o lokaciji</small>
+    </div>
+
+    <!-- REZULTATI -->
+    <div class="results" id="results">
+
+      <div class="results-top">
+        <div class="addr" id="res-address"></div>
+      </div>
+
+      <!-- KORAK 1: KROV — traži crtanje PRIJE procjene -->
+      <div class="map-section" id="map-section">
+        <div class="roof-nudge" id="map-hint">📐 <strong>Iscrtajte svoj krov</strong> za točnu procjenu i maksimalnu uštedu. Kliknite gumb ispod, pa redom dodirnite kutove krova na satelitu.</div>
+        <div id="map"></div>
+        <div class="map-disabled" id="map-disabled">Karta trenutno nije dostupna.</div>
+        <div class="roof-controls" id="roof-controls">
+          <button class="roof-btn" id="roof-btn" onclick="toggleRoofDraw()">📐 Iscrtaj svoj krov</button>
+          <span class="roof-info" id="roof-info" style="display:none"></span>
+          <button class="recalc-btn" id="recalc-btn" style="display:none" onclick="recalc()">🔄 Preračunaj</button>
+        </div>
+        <button class="skip-btn" id="skip-btn" onclick="skipRoof()">Preskoči — pokaži samo grubu procjenu</button>
+      </div>
+
+      <!-- KORAK 2: REVEAL — tek nakon crtanja ili preskoči -->
+      <div id="estimate-reveal" style="display:none">
+
+        <div class="savings-hero">
+          <div class="label" id="hero-label">Procijenjena ušteda</div>
+          <div class="amount"><span id="res-monthly">—</span> €<span style="font-size:24px;font-weight:700">/mj</span></div>
+          <div class="annual">≈ <span id="res-annual">—</span> € godišnje</div>
+        </div>
+
+        <!-- Usporedba potrošnja vs maksimum (max mode) -->
+        <div id="roof-compare" style="display:none">
+          <div class="compare-grid">
+            <div class="compare-card">
+              <div class="ctag">Prema potrošnji</div>
+              <div class="cmain"><span id="cmp-base-panels">—</span> panela</div>
+              <div class="csub"><span id="cmp-base-size">—</span> kW · pokriva račun</div>
+              <div class="cval"><span id="cmp-base-save">—</span> € / mj</div>
+            </div>
+            <div class="compare-card highlight">
+              <div class="ctag" id="cmp-roof-tag">Maksimum na krov</div>
+              <div class="cmain"><span id="cmp-roof-panels">—</span> panela</div>
+              <div class="csub"><span id="cmp-roof-size">—</span> kW · <span id="cmp-roof-energy">—</span> kWh/god</div>
+              <div class="cbattery" id="cmp-roof-battery" style="display:none"></div>
+              <div class="cnote" id="cmp-roof-note"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats (consumption mode) -->
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-box">
+            <div class="val" id="res-panels">—</div>
+            <div class="lbl">Solarnih panela</div>
+          </div>
+          <div class="stat-box">
+            <div class="val" id="res-size">—</div>
+            <div class="lbl">Veličina sustava</div>
+          </div>
+        </div>
+        <div class="loc-info" id="loc-info"></div>
+
+        <!-- BATERIJA TEASER -->
+        <div class="battery-teaser">
+          <div class="ico">🔋</div>
+          <div class="txt">Uz <strong>bateriju</strong>, struju s krova trošite i navečer umjesto da je prodajete jeftino u mrežu — i tako dodatno smanjite račun.</div>
+        </div>
+
+      <!-- KONTAKT — glavni cilj -->
+      <div class="contact">
+        <h3>Besplatna ponuda za vašu kuću</h3>
+        <p class="sub">Točan sustav, cijena i poticaji za vašu kuću.</p>
+
+        <div class="contact-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label>Ime i prezime</label>
+            <input type="text" id="c-name" placeholder="Marko Horvat" />
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label>Telefon</label>
+            <input type="tel" id="c-phone" placeholder="091 234 5678" />
+          </div>
+        </div>
+        <div class="form-group" style="margin:11px 0 0;">
+          <label>Email (opcionalno)</label>
+          <input type="email" id="c-email" placeholder="marko@email.com" />
+        </div>
+
+        <label class="wa-opt" for="c-whatsapp">
+          <input type="checkbox" id="c-whatsapp" checked />
+          <span class="wa-txt"><b>💬 Želim ponudu putem WhatsAppa</b> — najbrži način da odmah dobijete besplatnu ponudu i odgovore na sva pitanja.</span>
+        </label>
+
+        <button class="btn-contact" id="contact-btn" onclick="submitContact()">Pošaljite mi ponudu</button>
+        <div class="contact-sent" id="contact-sent">✅ Odlično! Javljamo se uskoro.</div>
+      </div>
+
+      <!-- POTICAJI -->
+      <div class="incentives">
+        <h4>✅ Poticaji i olakšice koji vas čekaju</h4>
+        <div class="inc-item"><span class="check">✓</span><span><strong>PDV samo 5%</strong> umjesto 25% na ugradnju — ušteda do 2.000 €.</span></div>
+        <div class="inc-item"><span class="check">✓</span><span><strong>FZOEU bespovratne potpore</strong> — Fond za zaštitu okoliša pokriva do 40% vrijednosti projekta.</span></div>
+        <div class="inc-item"><span class="check">✓</span><span><strong>Net billing</strong> — višak prodajete u mrežu, a najviše uštedite na struji koju sami potrošite.</span></div>
+        <div class="inc-item"><span class="check">✓</span><span><strong>Veća vrijednost nekretnine</strong> — solarni sustav podiže vrijednost za 3–5%.</span></div>
+      </div>
+
+        <button class="restart-btn" onclick="restart()">← Druga adresa</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">Jadran Solar d.o.o. · procjena je informativna</div>
+</div>
+
+<script>
+  let lastEstimate = null;
+  const COMPANY_WHATSAPP = '15556743318'; // TESTNI Meta broj (za end-to-end test). Za produkciju: pravi broj Jadran Solara.
+  const ROOF_HINT_DEFAULT = '📐 <strong>Iscrtajte svoj krov</strong> za točnu procjenu i maksimalnu uštedu. Kliknite gumb ispod, pa redom dodirnite kutove krova na satelitu.';
+  const ROOF_HINT_DRAWING = '👆 Dodirnite svaki kut krova jedan po jedan (obiđite cijeli krov — npr. 4 ugla). Kartu pomičete povlačenjem prsta. Kad zatvorite oblik, kliknite <strong>✓ Gotovo</strong>.';
+
+  async function submitForm() {
+    const address = document.getElementById('address').value.trim();
+    const bill = parseFloat(document.getElementById('bill').value);
+    const errorEl = document.getElementById('error-msg');
+    errorEl.style.display = 'none';
+
+    if (!address) { errorEl.textContent = 'Molimo unesite adresu nekretnine.'; errorEl.style.display = 'block'; return; }
+    if (!bill || bill < 10 || bill > 2000) { errorEl.textContent = 'Unesite realan iznos računa (10 – 2000 €).'; errorEl.style.display = 'block'; return; }
+
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+
+    try {
+      const res = await fetch('/api/estimate', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ address, monthlyBill: bill })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Greška');
+      lastEstimate = data;
+      lastEstimate._monthlyBill = bill;
+      enterRoofStep(data);
+    } catch (err) {
+      document.getElementById('form-section').style.display = 'block';
+      document.getElementById('loading').style.display = 'none';
+      errorEl.textContent = 'Greška pri izračunu. Provjerite adresu i pokušajte ponovo.';
+      errorEl.style.display = 'block';
+    }
+  }
+
+  function applyStats(data, monthlyBill) {
+    document.getElementById('res-panels').textContent = data.recommendedPanels;
+    document.getElementById('res-size').textContent = data.systemSizeKw + ' kW';
+    const li = document.getElementById('loc-info');
+    if (data.sunPerKwp) {
+      li.innerHTML = `☀️ Sunčanost vaše lokacije: <strong>${data.sunPerKwp.toLocaleString('hr')} kWh/kWp</strong> godišnje`
+        + (data.tilt != null ? ` · idealan nagib <strong>${data.tilt}°</strong>` : '');
+      li.style.display = 'block';
+    } else { li.style.display = 'none'; }
+  }
+
+  // KORAK 1: pokaži kartu i traži crtanje krova PRIJE procjene
+  function enterRoofStep(data) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('estimate-reveal').style.display = 'none';
+    document.getElementById('skip-btn').style.display = 'block';
+    document.getElementById('res-address').textContent = data.formattedAddress;
+    setupMap(data.lat, data.lng);
+  }
+
+  // KORAK 2: otkrij procjenu — 'max' (krov nacrtan) ili 'consumption' (preskočeno)
+  function revealEstimate(mode) {
+    const data = lastEstimate;
+    applyStats(data, data._monthlyBill);
+    if (mode === 'max' && data.roof) {
+      const r = data.roof;
+      const maxAnnual = r.totalBenefitAnnual + (r.batteryBenefitAnnual || 0);
+      const maxMonthly = Math.round(maxAnnual / 12);
+      document.getElementById('hero-label').textContent = 'Maksimalan potencijal (sustav + baterija)';
+      document.getElementById('res-monthly').textContent = maxMonthly;
+      document.getElementById('res-annual').textContent = (maxMonthly * 12).toLocaleString('hr');
+      document.getElementById('stats-grid').style.display = 'none';
+      document.getElementById('roof-compare').style.display = 'block';
+    } else {
+      document.getElementById('hero-label').textContent = 'Procijenjena ušteda';
+      document.getElementById('res-monthly').textContent = data.monthlySavings;
+      document.getElementById('res-annual').textContent = data.annualSavings.toLocaleString('hr');
+      document.getElementById('stats-grid').style.display = 'grid';
+      document.getElementById('roof-compare').style.display = 'none';
+    }
+    document.getElementById('estimate-reveal').style.display = 'block';
+    document.getElementById('skip-btn').style.display = 'none';
+    document.getElementById('estimate-reveal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function skipRoof() { revealEstimate('consumption'); }
+
+  // Kratko, ne lekcija — samo dovoljno za povjerenje
+  function buildMethodology(data, monthlyBill) {
+    const annualUsage = Math.round((monthlyBill / 0.18) * 12);
+    const sourceLine = data.fallback
+      ? 'službene EU podatke o sunčanosti za vaše <em>točne</em> koordinate (PVGIS, Europska komisija)'
+      : 'satelitsku analizu baš vašeg krova (Google Solar)';
+    const sourceTags = data.fallback
+      ? '<span class="tag">Google Geocoding</span><span class="tag">PVGIS (EU)</span><span class="tag">HEP tarifa</span>'
+      : '<span class="tag">Google Geocoding</span><span class="tag">Google Solar</span><span class="tag">PVGIS</span><span class="tag">HEP tarifa</span>';
+    const sunLine = data.sunPerKwp
+      ? ` Za vašu lokaciju to je <strong>${data.sunPerKwp.toLocaleString('hr')} kWh po kWp godišnje</strong>${data.tilt != null ? `, uz idealan nagib panela ${data.tilt}°` : ''}.`
+      : '';
+
+    document.getElementById('method-body').innerHTML = `
+      Lociramo vašu adresu i izmjerimo solarni potencijal koristeći ${sourceLine}.${sunLine}
+      Zatim uskladimo sustav s vašom potrošnjom (${monthlyBill} €/mj × 12 ÷ 0,18 €/kWh ≈ <strong>${annualUsage.toLocaleString('hr')} kWh/god</strong>) —
+      <strong>${data.recommendedPanels} panela (${data.systemSizeKw} kW)</strong>.
+      <div class="tags">${sourceTags}</div>`;
+  }
+
+  async function submitContact() {
+    const name = document.getElementById('c-name').value.trim();
+    const phone = document.getElementById('c-phone').value.trim();
+    const email = document.getElementById('c-email').value.trim();
+    const whatsappOptIn = document.getElementById('c-whatsapp').checked;
+
+    if (!name || !phone) { alert('Molimo unesite ime i broj telefona.'); return; }
+
+    const btn = document.getElementById('contact-btn');
+    btn.disabled = true; btn.textContent = 'Šalje se...';
+
+    const estPayload = lastEstimate ? { ...lastEstimate, whatsappOptIn } : { whatsappOptIn };
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, email, whatsappOptIn,
+          address: lastEstimate?.formattedAddress || '',
+          monthlyBill: lastEstimate?._monthlyBill || 0,
+          yearlyEnergyKwh: lastEstimate?.yearlyEnergyKwh || 0,
+          recommendedPanels: lastEstimate?.recommendedPanels || 0,
+          federalIncentive: lastEstimate?.federalIncentive || '',
+          stateIncentive: lastEstimate?.stateIncentive || '',
+          estimateData: JSON.stringify(estPayload)
+        })
+      });
+      btn.style.display = 'none';
+      document.getElementById('contact-sent').style.display = 'block';
+
+      // Pokreni WhatsApp razgovor odmah (speed-to-lead)
+      if (whatsappOptIn) {
+        const msg = `Pozdrav! Ja sam ${name}. Napravio/la sam procjenu za solarne panele${lastEstimate?.formattedAddress ? ' (' + lastEstimate.formattedAddress + ')' : ''} i želio/la bih ponudu.`;
+        window.open(`https://wa.me/${COMPANY_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+      }
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Pošaljite mi ponudu';
+      alert('Greška pri slanju. Pokušajte ponovo ili nas nazovite direktno.');
+    }
+  }
+
+  // ── GOOGLE MAPS ──
+  window.gm_authFailure = function () { disableMap(); };
+
+  let map = null, marker = null, mapsReady = false;
+  let roofPolygon = null, roofPath = [], drawing = false, mapClickListener = null;
+  let currentRoofArea = 0;
+
+  async function loadMaps() {
+    if (mapsReady) return true;
+    if (window.google && window.google.maps) { mapsReady = true; return true; }
+    try {
+      const cfg = await (await fetch('/api/config')).json();
+      if (!cfg.mapsKey) return false;
+      await new Promise((resolve, reject) => {
+        window.__mapsCb = () => { mapsReady = true; resolve(); };
+        const s = document.createElement('script');
+        s.src = `https://maps.googleapis.com/maps/api/js?key=${cfg.mapsKey}&libraries=geometry&callback=__mapsCb`;
+        s.async = true; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+      return true;
+    } catch (e) { return false; }
+  }
+
+  async function setupMap(lat, lng) {
+    if (lat == null || lng == null) { disableMap(); return; }
+    const ok = await loadMaps();
+    if (!ok) { disableMap(); return; }
+
+    const pos = { lat: Number(lat), lng: Number(lng) };
+    const mapEl = document.getElementById('map');
+
+    if (roofPolygon) { roofPolygon.setMap(null); roofPolygon = null; }
+    roofPath = []; currentRoofArea = 0; drawing = false;
+    document.getElementById('roof-info').style.display = 'none';
+    document.getElementById('roof-compare').style.display = 'none';
+    document.getElementById('roof-btn').classList.remove('active');
+    document.getElementById('roof-btn').textContent = '📐 Iscrtaj svoj krov';
+    document.getElementById('map-hint').innerHTML = ROOF_HINT_DEFAULT;
+
+    try {
+      if (!map) {
+        map = new google.maps.Map(mapEl, {
+          center: pos, zoom: 20, mapTypeId: 'satellite', tilt: 0,
+          gestureHandling: 'greedy',
+          streetViewControl: false, mapTypeControl: false, fullscreenControl: false
+        });
+        marker = new google.maps.Marker({ position: pos, map, draggable: true, title: 'Povucite na točan krov' });
+        marker.addListener('dragend', () => { document.getElementById('recalc-btn').style.display = 'inline-block'; });
+      } else {
+        map.setCenter(pos); marker.setPosition(pos);
+      }
+    } catch (e) { disableMap(); }
+  }
+
+  function disableMap() {
+    document.getElementById('map').style.display = 'none';
+    document.getElementById('roof-controls').style.display = 'none';
+    document.getElementById('map-hint').style.display = 'none';
+    document.getElementById('map-disabled').style.display = 'block';
+    const skip = document.getElementById('skip-btn');
+    if (skip) skip.style.display = 'none';
+    // Bez karte korisnik ne može crtati — odmah pokaži grubu procjenu
+    const reveal = document.getElementById('estimate-reveal');
+    if (lastEstimate && reveal && reveal.style.display === 'none') revealEstimate('consumption');
+  }
+
+  function toggleRoofDraw() {
+    if (!map) return;
+    drawing = !drawing;
+    const btn = document.getElementById('roof-btn');
+
+    if (drawing) {
+      if (roofPolygon) { roofPolygon.setMap(null); roofPolygon = null; }
+      roofPath = []; currentRoofArea = 0;
+      document.getElementById('roof-info').style.display = 'none';
+      btn.classList.add('active');
+      btn.textContent = '✓ Gotovo';
+      document.getElementById('map-hint').innerHTML = ROOF_HINT_DRAWING;
+
+      mapClickListener = map.addListener('click', (e) => {
+        roofPath.push(e.latLng);
+        if (!roofPolygon) {
+          roofPolygon = new google.maps.Polygon({
+            paths: roofPath, map, fillColor: '#f59e0b', fillOpacity: 0.35,
+            strokeColor: '#f59e0b', strokeWeight: 2, editable: true
+          });
+        } else { roofPolygon.setPath(roofPath); }
+        updateRoofArea();
+      });
+    } else {
+      btn.classList.remove('active');
+      btn.textContent = '📐 Iscrtaj ponovno';
+      document.getElementById('map-hint').innerHTML = ROOF_HINT_DEFAULT;
+      if (mapClickListener) { google.maps.event.removeListener(mapClickListener); mapClickListener = null; }
+      if (roofPolygon) {
+        google.maps.event.addListener(roofPolygon.getPath(), 'set_at', updateRoofArea);
+        google.maps.event.addListener(roofPolygon.getPath(), 'insert_at', updateRoofArea);
+      }
+      if (roofPath.length < 3) { alert('Označite barem 3 kuta krova.'); return; }
+      // pomakni pin na sredinu iscrtanog krova (točnija lokacija kuće)
+      if (marker) {
+        let clat = 0, clng = 0;
+        roofPath.forEach(p => { clat += p.lat(); clng += p.lng(); });
+        marker.setPosition({ lat: clat / roofPath.length, lng: clng / roofPath.length });
+      }
+      recalc();
+    }
+  }
+
+  function updateRoofArea() {
+    if (!roofPolygon || roofPath.length < 3) return;
+    // Satelit pokazuje tlocrt (ravnu projekciju). Pravi kosi krov je veći → korekcija po nagibu.
+    const footprint = google.maps.geometry.spherical.computeArea(roofPolygon.getPath());
+    const tilt = (lastEstimate && lastEstimate.tilt != null) ? lastEstimate.tilt : 30;
+    const slopeFactor = 1 / Math.cos(tilt * Math.PI / 180);
+    currentRoofArea = footprint * slopeFactor;
+    const info = document.getElementById('roof-info');
+    info.style.display = 'inline-block';
+    info.textContent = `Površina krova: ~${Math.round(currentRoofArea)} m²`;
+  }
+
+  async function recalc() {
+    const btn = document.getElementById('recalc-btn');
+    const info = document.getElementById('roof-info');
+    btn.style.display = 'inline-block'; btn.textContent = 'Računam...';
+    const pos = marker.getPosition();
+    try {
+      const res = await fetch('/api/estimate', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          address: lastEstimate?.formattedAddress || '',
+          monthlyBill: lastEstimate?._monthlyBill,
+          lat: pos.lat(), lng: pos.lng(),
+          roofArea: currentRoofArea > 0 ? currentRoofArea : undefined
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error();
+      data._monthlyBill = lastEstimate._monthlyBill;
+      lastEstimate = data;
+
+      if (data.roof) {
+        const r = data.roof;
+        document.getElementById('cmp-base-panels').textContent = data.recommendedPanels;
+        document.getElementById('cmp-base-size').textContent = data.systemSizeKw;
+        document.getElementById('cmp-base-save').textContent = data.monthlySavings.toLocaleString('hr');
+        document.getElementById('cmp-roof-panels').textContent = r.maxPanels;
+        document.getElementById('cmp-roof-size').textContent = r.systemSizeKw;
+        document.getElementById('cmp-roof-energy').textContent = r.yearlyEnergyKwh.toLocaleString('hr');
+
+        const bat = document.getElementById('cmp-roof-battery');
+        if (r.batteryBenefitAnnual > 0) {
+          bat.innerHTML = `🔋 <strong>S baterijom ≈ +${r.batteryBenefitAnnual.toLocaleString('hr')} € godišnje</strong> (sami trošite višak umjesto da ga prodajete jeftino)`;
+          bat.style.display = 'block';
+        } else { bat.style.display = 'none'; }
+
+        const tag = document.getElementById('cmp-roof-tag');
+        const note = document.getElementById('cmp-roof-note');
+        if (r.coversConsumption) {
+          tag.textContent = 'Maksimum na krov';
+          note.innerHTML = r.surplusKwh > 0
+            ? `Idealno uz <strong>auto na struju, dizalicu topline ili bateriju</strong>.`
+            : 'Krov udobno pokriva cijelu vašu potrošnju.';
+        } else {
+          tag.textContent = 'Stane na krov';
+          const pct = Math.round((r.maxPanels / data.recommendedPanels) * 100);
+          note.textContent = `Realno stane ${r.maxPanels} panela — pokriva ~${pct}% potrošnje.`;
+        }
+
+        info.style.display = 'inline-block';
+        info.style.background = '#f0fdf4'; info.style.color = '#15803d';
+        info.textContent = `Krov ~${r.area} m²`;
+        document.getElementById('roof-compare').style.display = 'block';
+      }
+
+      revealEstimate('max');
+      btn.style.display = 'none'; btn.textContent = '🔄 Preračunaj';
+    } catch (e) {
+      btn.textContent = '🔄 Preračunaj';
+      alert('Greška pri preračunu. Pokušajte ponovo.');
+    }
+  }
+
+  function restart() {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('form-section').style.display = 'block';
+    document.getElementById('error-msg').style.display = 'none';
+    document.getElementById('estimate-reveal').style.display = 'none';
+    document.getElementById('roof-compare').style.display = 'none';
+    document.getElementById('stats-grid').style.display = 'grid';
+    const cb = document.getElementById('contact-btn');
+    cb.disabled = false; cb.textContent = 'Pošaljite mi ponudu'; cb.style.display = 'block';
+    document.getElementById('contact-sent').style.display = 'none';
+    document.getElementById('c-name').value = '';
+    document.getElementById('c-phone').value = '';
+    document.getElementById('c-email').value = '';
+    document.getElementById('c-whatsapp').checked = true;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('form-section').style.display !== 'none') submitForm();
+  });
+</script>
+</body>
+</html>

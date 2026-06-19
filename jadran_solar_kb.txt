@@ -1,0 +1,274 @@
+# JADRAN SOLAR — BAZA ZNANJA
+# Koristi AI chatbot agent za odgovaranje na pitanja kupaca
+
+## OSNOVNE INFORMACIJE O KOMPANIJI
+
+**Naziv:** Jadran Solar d.o.o.
+**Osnivanje:** 2015. godine
+**Sjedište:** Ul. Vladimira Nazora 12, 10000 Zagreb
+**Telefon:** +385 1 555 8800
+**Email:** info@jadransolar.hr
+**Web:** www.jadransolar.hr
+**Radno vrijeme:** Ponedjeljak–Petak 8:00–17:00 | Subota 9:00–13:00 | Nedjelja zatvoreno
+
+**O nama:**
+Jadran Solar je jedna od vodećih tvrtki za ugradnju solarnih sustava u Hrvatskoj. Od 2015. godine ugradili smo više od 1.800 solarnih elektrana na obiteljskim kućama, poslovnim objektima i farmama diljem cijele Hrvatske. Certificirani smo SMA i Fronius partner, a naši instalateri posjeduju sve potrebne licence sukladno hrvatskim propisima i EU normama.
+
+**Područje rada:**
+Cijela Hrvatska — Zagreb, Split, Rijeka, Osijek, Zadar, Dubrovnik, Pula, Varaždin, Šibenik, Slavonski Brod i sva ostala mjesta.
+
+---
+
+## USLUGE
+
+### 1. Ugradnja solarnih sustava za kućanstva
+Projektiramo i ugrađujemo solarne elektrane prilagođene svakom domaćinstvu. Svaki sustav dizajniramo prema orijentaciji krova, zasjenjenju i vašoj godišnjoj potrošnji električne energije.
+
+- Veličine sustava: 3 kW do 30 kW
+- Marke panela: Longi Solar, JA Solar, REC, Jinko Solar
+- Izmjenjivači (inverteri): SMA, Fronius, Huawei, Growatt
+- Trajanje ugradnje: 1–2 dana
+- Ishođenje dozvola: Sve dozvole i prijave u mrežu mi rješavamo
+- Priključenje na mrežu: Prijavu HEP-u ili lokalnom distributeru rješavamo mi
+
+**Što je uključeno:**
+- Besplatna procjena i analiza lokacije
+- Izrada tehničkog projekta
+- Ugradnja od strane certificiranih instalatera
+- Ishođenje elektroenergetske suglasnosti (EES)
+- Prijava u mrežu (net metering)
+- Puštanje u pogon i predaja dokumentacije
+- Postavljanje daljinskog nadzora sustava (aplikacija)
+
+---
+
+### 2. Solarne elektrane za poslovne objekte
+Radimo s malim i střednjim tvrtkama, skladištima, hotelima, ugostiteljskim objektima i poljoprivrednim gospodarstvima.
+
+- Veličine sustava: 10 kW do 1 MW
+- Ravni krovovi i sustavi na tlu
+- Ekonomska analiza isplativosti uključena
+- Mogućnost financiranja putem EU fondova i bankarskih kredita
+
+**Sektori:** Hoteli, restorani, OPG-ovi, skladišta, maloprodaja, industrijski objekti, škole, crkve.
+
+---
+
+### 3. Baterijski sustavi za pohranu energije
+Ugrađujemo sustave za pohranu solarne energije za korištenje noću ili za zaštitu od nestanka struje.
+
+**Dostupni sustavi:**
+- BYD Battery Box HV — 5,1 kWh | od 3.200 € instalirano
+- Pylontech US3000 — 3,5 kWh | od 2.100 € instalirano
+- Huawei LUNA 2000 — 5 kWh | od 3.400 € instalirano
+
+**Prednosti:**
+- Koristite solarnu struju i noću
+- Zaštita od nestanka struje (blackout protection)
+- Smanjenje troška struje na minimum
+- Neovisnost o mrežnoj tarifi
+
+---
+
+### 4. Punjači za električna vozila (EV punjači)
+- Ugradnja AC punjača (Mode 3) za kućanstva i tvrtke
+- Marke: Wallbox, Webasto, Zaptec
+- Cijena: od 800 € do 1.500 € instalirano ovisno o elektroinstalacijskim radovima
+- Može se kombinirati s ugradnjom solarnih panela
+
+---
+
+### 5. Pregled krova i analiza solarnog potencijala
+Besplatna usluga za sve zainteresirane. Analiziramo:
+- Starost i stanje krova
+- Analizu zasjenjenja dronom i softverom
+- Nosivost konstrukcije
+- Optimalan raspored panela za maksimalnu proizvodnju
+
+---
+
+## CIJENE
+
+**Prosječna cijena solarnih sustava za kućanstvo (bez poticaja):**
+- Mali sustav (5 kW): ~7.500 € – 9.000 €
+- Srednji sustav (10 kW): ~13.000 € – 16.000 €
+- Veliki sustav (15 kW): ~18.000 € – 22.000 €
+
+**Napomena:** Konačna cijena ovisi o složenosti krova, eventualnim elektroinstalacijskim radovima i odabiru opreme. Sve cijene uključuju ugradnju, dokumentaciju i puštanje u pogon.
+
+---
+
+## JAMSTVA
+
+### Jamstvo na solarne panele
+- **Produktno jamstvo:** 12–15 godina (pokriva greške u proizvodnji)
+- **Jamstvo na performanse:** 25–30 godina (paneli garantirano proizvode minimalno 80–87% prvobitnog iznosa nakon 25 godina, ovisno o modelu)
+
+### Jamstvo na inverter
+- SMA: **5 godina** (proširivo na 10 ili 20 godina)
+- Fronius: **5 godina** (proširivo na 10 godina)
+- Huawei: **10 godina**
+
+### Jamstvo na baterije
+- BYD Battery Box: **10 godina**
+- Pylontech: **10 godina**
+- Huawei LUNA: **10 godina**
+
+### Jamstvo na ugradnju (Jadran Solar)
+- **5 godina jamstva na instalaterske radove**
+- Pokriva sve instalaterske radove, prodore kroz krov, kabliranje i nosače
+- Ako krov prokišnjava zbog naše ugradnje, besplatno to rješavamo
+
+---
+
+## FINANCIRANJE
+
+### Opcija 1: Gotovinska kupnja (najbolji ROI)
+- Plaćate odmah, bez kamate
+- Prosječni povrat investicije u Hrvatskoj: **7–10 godina**
+- Nakon toga, 15–20 godina besplatne električne energije
+- Povećava vrijednost nekretnine
+
+---
+
+### Opcija 2: Bankarski kredit
+- Krediti za energetsku obnovu dostupni u većini hrvatskih banaka
+- HBOR (Hrvatska banka za obnovu i razvitak) nudi povoljne zelene kredite
+- Kamate od ~3–5% godišnje
+- Rok otplate: do 10 godina
+- Preporučujemo: Erste, Zaba, OTP banka — imaju zelene kreditne linije
+
+---
+
+### Opcija 3: EU fondovi i bespovratne potpore
+- **FZOEU (Fond za zaštitu okoliša i energetsku učinkovitost)** — povremeno raspisuje natječaje za sufinanciranje solarnih sustava za kućanstva (do 40% vrijednosti projekta)
+- **Europski fond za regionalni razvoj (EFRR)** — za poduzetnike i OPG-ove
+- Naš tim prati sve aktivne natječaje i može pomoći s prijavom
+
+---
+
+### Opcija 4: Leasing
+- Dostupan za poslovne subjekte
+- Pogodno za tvrtke koje žele porezne olakšice
+- Kontaktirajte nas za detalje
+
+---
+
+## POTICAJI I SUBVENCIJE
+
+### Obračun viška energije — VAŽNA PROMJENA 2026.
+- **Stari net metering (do 31.12.2025.):** višak se gotovo 1:1 prebijao s preuzetom energijom. Tko je ishodio elektroenergetsku suglasnost do kraja 2025., zadržava taj povoljniji obračun još 10 godina.
+- **Novi net billing (svi novi korisnici od 2026.):** struju iz mreže kupujete po ~0,18 €/kWh, a višak koji predate u mrežu prodajete po znatno nižoj cijeni (~0,05 €/kWh). Mrežarina se plaća na svu preuzetu energiju.
+- **Što to znači u praksi:** najveću vrijednost ima struja koju proizvedete i ODMAH sami potrošite. Zato sustav dimenzioniramo prema vašoj stvarnoj potrošnji, a ne "što više to bolje".
+- **Baterija** postaje vrlo isplativa — sprema dnevni višak za navečer umjesto da ga prodajete po niskoj cijeni.
+- Predimenzioniranje (puniti cijeli krov panelima) ima smisla samo ako planirate veću buduću potrošnju: električni auto, dizalicu topline ili bateriju.
+
+### FZOEU poticaji
+- Fond za zaštitu okoliša povremeno raspisuje natječaje s bespovratnim sredstvima
+- Tipično pokrivaju 20–40% troška solarnog sustava za kućanstva
+- Naša administracija vam pomaže s prijavom besplatno
+
+### PDV olakšica
+- Ugradnja solarnih panela na stambene objekte oporezuje se **stopom PDV-a od 5%** (umjesto standardnih 25%)
+- Ovo je značajna ušteda — na sustavu od 10.000 € uštedite 2.000 € PDV-a
+
+### EU Green Deal potpore
+- Hrvatska kao članica EU ima pristup raznim zelenim fondovima
+- Za poduzetnike: potpore kroz Nacionalni plan oporavka (NPO)
+
+---
+
+## PROCES — KAKO FUNKCIONIRA
+
+**Korak 1: Besplatna analiza i ponuda (1. tjedan)**
+- Javite nam se ili ispunite upit
+- Analiziramo vaš krov, lokaciju i račune za struju
+- Izrađujemo besplatnu ponudu s procjenom ušteda
+
+**Korak 2: Tehnički projekt i dozvole (2.–4. tjedan)**
+- Potpisujete ugovor
+- Naši projektanti izrađuju tehnički projekt
+- Ishodujemo elektroenergetsku suglasnost (EES) od distributora
+
+**Korak 3: Ugradnja (1–2 dana)**
+- Naša ekipa dolazi i montira kompletan sustav
+- Tipično završimo u jednom danu za kućanstvo
+- Čistimo gradilište nakon radova
+
+**Korak 4: Priključenje i tehnički pregled (4.–8. tjedan)**
+- Distributer (HEP ili lokalni distributer) pregledava instalaciju
+- Postavljamo dvosmjerni brojilo (smart meter)
+- Aktivacija net meteringa
+
+**Korak 5: Puštanje u pogon**
+- Uključujemo sustav i pokazujemo vam kako funkcionira aplikacija za nadzor
+- Od tog trenutka počinjete štediti na struji
+
+---
+
+## ČESTO POSTAVLJANA PITANJA
+
+**P: Koliko mogu uštedjeti na struji?**
+O: Prosječno kućanstvo u Hrvatskoj troši između 3.000–5.000 kWh godišnje i plaća 500–900 € za struju. Solarnim sustavom možete pokriti 70–100% te potrošnje, ovisno o veličini sustava i vašim navikama.
+
+**P: Koliko traje ugradnja?**
+O: Sama ugradnja traje 1–2 dana. Od potpisivanja ugovora do puštanja u pogon obično prođe 4–8 tjedana, uglavnom zbog administrativnih postupaka s distributerom.
+
+**P: Hoće li solarni paneli funkcionirati oblačnog dana?**
+O: Da, paneli rade i za oblačnog vremena, ali s manjom produkcijom (10–25% kapaciteta). Hrvatska ima izvrstan solarni potencijal — posebno Dalmacija i Istra, ali i kontinentalni dio ima dovoljno sunčanih sati za isplativost.
+
+**P: Što se događa sa viškom struje?**
+O: Višak energije koji ne potrošite odmah odlazi u javnu mrežu. Po novom sustavu (net billing od 2026.) taj se višak otkupljuje po nižoj cijeni (~0,05 €/kWh) nego što plaćate struju iz mreže (~0,18 €/kWh). Zato je najisplativije proizvedenu struju potrošiti odmah ili je spremiti u bateriju za navečer. Korisnici koji su ishodili suglasnost do kraja 2025. zadržavaju stari, povoljniji net metering 10 godina.
+
+**P: Hoće li solarni paneli povećati vrijednost moje nekretnine?**
+O: Da. Prema istraživanjima, solarni sustavi povećavaju vrijednost nekretnine za 3–5%, a energetski certifikat prelazi u bolju klasu što je važno pri prodaji.
+
+**P: Što ako treba popravak ili zamjena panela?**
+O: Kontaktirajte nas na servis@jadransolar.hr ili +385 1 555 8811. Naš nadzorni sustav često otkrije problem prije vas. Sve u jamstvenom roku rješavamo besplatno.
+
+**P: Mogu li instalirati solare i bez odobrenja HOA ili susjedske suglasnosti?**
+O: Za obiteljske kuće uglavnom nije potrebna suglasnost susjeda. Za stanove ili kuće u etažnom vlasništvu može biti potrebna suglasnost suvlasnika. Mi provjeravamo situaciju za vas.
+
+**P: Trebam li mijenjati krov prije ugradnje solarnih panela?**
+O: Ako je krov stariji od 20 godina ili loše stanje, preporučamo da ga obnovite prije ugradnje. Mi surađujemo s krovopokrivačima koji mogu koordinirati radove.
+
+**P: Kako funkcionira nadzor sustava?**
+O: Svaki sustav ima online nadzor putem aplikacije (SMA Sunny Portal, Fronius Solar.web ili Huawei FusionSolar). Vidite produkciju u realnom vremenu i povijest proizvodnje na mobitelu.
+
+**P: Ima li besplatnih poticaja trenutno?**
+O: FZOEU povremeno raspisuje natječaje — pratimo ih i obavijestimo vas kad su aktivni. Uvijek je aktualna olakšica PDV-a 5%. Od 2026. je na snazi net billing (otkup viška ~0,05 €/kWh), pa savjetujemo dimenzioniranje prema vlastitoj potrošnji i eventualno bateriju. Kontaktirajte nas za najnovije informacije.
+
+**P: Kako početi?**
+O: Najlakše je dobiti besplatnu procjenu. Recite nam svoju adresu i prosječni mjesečni račun za struju — izračunat ćemo vam koliko možete uštedjeti i preporučiti optimalan sustav.
+
+---
+
+## KONTAKT I PODRŠKA
+
+**Prodaja:** +385 1 555 8800 | prodaja@jadransolar.hr
+**Servis i reklamacije:** +385 1 555 8811 | servis@jadransolar.hr
+**Opći upiti:** info@jadransolar.hr
+**Hitne intervencije:** +385 1 555 8822 (dostupno 24/7)
+
+**Adresa ureda:** Ul. Vladimira Nazora 12, 10000 Zagreb
+**Radno vrijeme:** Pon–Pet 8:00–17:00 | Sub 9:00–13:00
+
+**Društvene mreže:**
+- Instagram: @jadransolar
+- Facebook: facebook.com/jadransolar
+- Google recenzije: 4.8 zvjezdica (312 recenzija)
+
+---
+
+## PREDNOSTI JADRAN SOLARA
+
+- Hrvatska tvrtka od 2015. s lokalnim timom
+- Više od 1.800 ugrađenih sustava diljem Hrvatske
+- 5 godina jamstva na instalaterske radove (prosjek u branši je 1–2 godine)
+- Certificirani SMA i Fronius partner
+- In-house instalaterski tim (ne podugovaramo)
+- 4.8 Google ocjena s 312 recenzija
+- Pomažemo s prijavama za FZOEU poticaje
+- PDV 5% na ugradnju (umjesto 25%)
+- Besplatna analiza i ponuda bez obveze
+- Podrška 24/7 za hitne intervencije
