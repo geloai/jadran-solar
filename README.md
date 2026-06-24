@@ -7,14 +7,30 @@ A visitor gets an instant solar-savings estimate, leaves their contact, and an *
 > Built solo as my first full AI-automation project. *Jadran Solar* is a fictional company used for the demo.
 
 **🔗 Live demo:** https://jadran-solar.onrender.com
-**🎥 Walkthrough screenshots:**
-<img width="1920" height="879" alt="image" src="https://github.com/user-attachments/assets/a542d87f-14be-4e05-99d1-75e9f4a98600" />
-<img width="655" height="714" alt="image" src="https://github.com/user-attachments/assets/1cf9370b-43a6-4e8f-8492-88324b418e87" />
-<img width="629" height="706" alt="image" src="https://github.com/user-attachments/assets/954a4006-2cae-44b0-819b-62bab2953e36" />
-<img width="1920" height="1286" alt="image" src="https://github.com/user-attachments/assets/3b4c986d-337b-4f4f-9091-f745d3322028" />
-<img width="1271" height="833" alt="image" src="https://github.com/user-attachments/assets/3da67211-9b53-4f43-8829-cd3654372303" />
-<img width="1243" height="489" alt="image" src="https://github.com/user-attachments/assets/22dc85de-a671-4e28-baaf-8e5403232cb3" />
-<img width="1708" height="625" alt="Screenshot 2026-06-24 194044" src="https://github.com/user-attachments/assets/9e93a316-9668-47c8-93c7-e5eedd9edb3a" />
+## Walkthrough (screenshots)
+
+> The app UI is in **Croatian** (built for the Croatian market). English captions below each image.
+
+**1. Instant savings estimate** — the visitor enters their address and monthly electricity bill.
+<img width="900" alt="Estimate form" src="https://github.com/user-attachments/assets/a542d87f-14be-4e05-99d1-75e9f4a98600" />
+
+**2. Roof on satellite** — the user is prompted to outline their roof for a precise, personalized estimate.
+<img width="420" alt="Roof step" src="https://github.com/user-attachments/assets/1cf9370b-43a6-4e8f-8492-88324b418e87" />
+
+**3. Drawing the roof** — tapping the corners computes the roof area (slope-corrected, ~134 m²).
+<img width="420" alt="Drawing the roof" src="https://github.com/user-attachments/assets/954a4006-2cae-44b0-819b-62bab2953e36" />
+
+**4. Results** — the headline shows the *maximum potential* (system + battery), with a consumption-vs-max comparison, the battery upside, and the lead-capture form.
+<img width="500" alt="Results page" src="https://github.com/user-attachments/assets/3b4c986d-337b-4f4f-9091-f745d3322028" />
+
+**5. AI qualification on WhatsApp** — the AI agent (Ana) qualifies the lead in Croatian, like a sales rep would.
+<img width="800" alt="WhatsApp qualification" src="https://github.com/user-attachments/assets/3da67211-9b53-4f43-8829-cd3654372303" />
+
+**6. Booking the appointment** — Ana proposes concrete slots, books one, and tells the lead a colleague will call to confirm.
+<img width="800" alt="WhatsApp booking" src="https://github.com/user-attachments/assets/22dc85de-a671-4e28-baaf-8e5403232cb3" />
+
+**7. Result in the CRM (Airtable)** — the lead is auto-updated to **"Zakazano" (Booked)** with the appointment time and a full **sales briefing** for the human rep.
+<img width="1000" alt="Airtable CRM result" src="https://github.com/user-attachments/assets/9e93a316-9668-47c8-93c7-e5eedd9edb3a" />
 
 
 
