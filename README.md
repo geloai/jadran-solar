@@ -7,7 +7,16 @@ A visitor gets an instant solar-savings estimate, leaves their contact, and an *
 > Built solo as my first full AI-automation project. *Jadran Solar* is a fictional company used for the demo.
 
 **🔗 Live demo:** https://jadran-solar.onrender.com
-**🎥 Walkthrough video:** _(coming soon)_
+**🎥 Walkthrough screenshots:**
+<img width="1920" height="879" alt="image" src="https://github.com/user-attachments/assets/a542d87f-14be-4e05-99d1-75e9f4a98600" />
+<img width="655" height="714" alt="image" src="https://github.com/user-attachments/assets/1cf9370b-43a6-4e8f-8492-88324b418e87" />
+<img width="629" height="706" alt="image" src="https://github.com/user-attachments/assets/954a4006-2cae-44b0-819b-62bab2953e36" />
+<img width="1920" height="1286" alt="image" src="https://github.com/user-attachments/assets/3b4c986d-337b-4f4f-9091-f745d3322028" />
+<img width="1271" height="833" alt="image" src="https://github.com/user-attachments/assets/3da67211-9b53-4f43-8829-cd3654372303" />
+<img width="1243" height="489" alt="image" src="https://github.com/user-attachments/assets/22dc85de-a671-4e28-baaf-8e5403232cb3" />
+<img width="1708" height="625" alt="Screenshot 2026-06-24 194044" src="https://github.com/user-attachments/assets/9e93a316-9668-47c8-93c7-e5eedd9edb3a" />
+
+
 
 ---
 
